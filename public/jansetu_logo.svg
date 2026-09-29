@@ -1,0 +1,67 @@
+<svg width="420" height="360" viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Five-petal lotus icon: soft swooping curves, same color sequence as the BRICS India 2026 mark -->
+
+  <!-- Outer left petal - indigo/blue -->
+  <path d="M210 12
+           C 165 55, 130 90, 78 130
+           C 118 148, 155 172, 172 205
+           C 182 225, 188 240, 190 255
+           C 185 205, 190 150, 210 110
+           Z"
+        fill="#2E4C9E"/>
+
+  <!-- Inner left petal - yellow -->
+  <path d="M210 25
+           C 178 62, 150 92, 112 125
+           C 145 142, 172 165, 186 198
+           C 193 214, 196 226, 198 238
+           C 194 198, 197 148, 210 112
+           Z"
+        fill="#F5C518"/>
+
+  <!-- Outer right petal - red -->
+  <path d="M210 12
+           C 255 55, 290 90, 342 130
+           C 302 148, 265 172, 248 205
+           C 238 225, 232 240, 230 255
+           C 235 205, 230 150, 210 110
+           Z"
+        fill="#D62828"/>
+
+  <!-- Inner right petal - green -->
+  <path d="M210 25
+           C 242 62, 270 92, 308 125
+           C 275 142, 248 165, 234 198
+           C 227 214, 224 226, 222 238
+           C 226 198, 223 148, 210 112
+           Z"
+        fill="#2E9E4E"/>
+
+  <!-- Center flame petal - orange -->
+  <path d="M210 4
+           C 186 55, 172 100, 172 140
+           C 172 182, 188 220, 210 260
+           C 232 220, 248 182, 248 140
+           C 248 100, 234 55, 210 4
+           Z"
+        fill="#F0871E"/>
+
+  <!-- Inner flame highlight -->
+  <path d="M210 45
+           C 195 82, 187 115, 187 145
+           C 187 175, 197 205, 210 235
+           C 223 205, 233 175, 233 145
+           C 233 115, 225 82, 210 45
+           Z"
+        fill="#FFFFFF" opacity="0.92"/>
+
+  <!-- Wordmark -->
+  <text x="210" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="46" letter-spacing="3">
+    <tspan fill="#2E4C9E">J</tspan><tspan fill="#F5C518">A</tspan><tspan fill="#F0871E">N</tspan><tspan fill="#2E9E4E">S</tspan><tspan fill="#D62828">E</tspan><tspan fill="#2E4C9E">T</tspan><tspan fill="#F5C518">U</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="210" y="326" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="13" letter-spacing="3" fill="#F0871E">
+    BRIDGING CITIZENS TO DEVELOPMENT
+  </text>
+</svg>
