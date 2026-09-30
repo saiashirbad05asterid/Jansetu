@@ -2,7 +2,6 @@ import {
   addDoc,
   collection,
   doc,
-  getDocs,
   increment,
   limit,
   onSnapshot,

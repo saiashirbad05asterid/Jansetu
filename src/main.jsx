@@ -455,6 +455,7 @@ function App() {
           image: item.photoUrl || item.image,
           credit: item.photoUrl ? 'Citizen uploaded evidence' : 'Citizen report',
           description: item.description || '',
+          userId: item.userId || '',
           live: true
         })));
       },
@@ -533,7 +534,12 @@ function App() {
     try {
       await signInWithGoogle();
     } catch (error) {
-      setAuthError(error.message || 'Google sign-in could not be completed.');
+      const authMessages = {
+        'auth/unauthorized-domain': 'This site is not authorized in Firebase yet. Add 127.0.0.1, localhost, and your deployed domain in Firebase Authentication → Settings → Authorized domains.',
+        'auth/operation-not-allowed': 'Google sign-in is not enabled for this Firebase project yet.',
+        'auth/too-many-requests': 'Google sign-in is temporarily rate-limited. Please wait a moment and try again.'
+      };
+      setAuthError(authMessages[error.code] || error.message || 'Google sign-in could not be completed.');
     }
   };
 
@@ -685,6 +691,9 @@ function App() {
           <button className={page === 'problems' ? 'active' : ''} onClick={() => openProtectedPage('problems')}>
             <ClipboardList size={17} /> Problems & data
           </button>
+          {user && <button className={page === 'mine' ? 'active' : ''} onClick={() => setPage('mine')}>
+            <User size={17} /> My reports
+          </button>}
         </nav>
         <section className="auth-status" aria-label="Authentication status">
           {user ? (
@@ -702,6 +711,13 @@ function App() {
           )}
         </section>
       </header>
+
+      {backendError && (
+        <div className="system-notice" role="status">
+          <span>{backendError}</span>
+          <button aria-label="Dismiss notification" onClick={() => setBackendError('')}><X size={15} /></button>
+        </div>
+      )}
 
       {authModalOpen && !user && (
         <section className="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -922,6 +938,32 @@ function App() {
         </section>
       )}
 
+      {page === 'mine' && user && (
+        <section className="page-grid single-page-grid">
+          <section className="panel my-reports-panel">
+            <div className="section-title">
+              <p>Your civic trail</p>
+              <h1>My reports</h1>
+              <span>Keep track of the issues you have raised and the public signal they are building.</span>
+            </div>
+            {liveProblems.filter((problem) => problem.userId === user.uid).length ? (
+              <div className="my-reports-list">
+                {liveProblems.filter((problem) => problem.userId === user.uid).map((problem) => (
+                  <ProblemCard key={problem.id} problem={problem} />
+                ))}
+              </div>
+            ) : (
+              <div className="empty-dashboard">
+                <ClipboardList size={28} />
+                <h2>No reports yet</h2>
+                <p>Your submitted complaints will appear here with their live status and evidence.</p>
+                <button className="primary-action" onClick={() => setPage('complaint')}>File your first report <Send size={16} /></button>
+              </div>
+            )}
+          </section>
+        </section>
+      )}
+
       {page === 'problems' && (
         <>
           <section className="problems-toolbar">
@@ -1040,6 +1082,14 @@ function App() {
           </section>
         </>
       )}
+
+      <footer className="site-footer">
+        <div>
+          <strong>JanSetu</strong>
+          <span>Evidence-led civic intelligence for India.</span>
+        </div>
+        <span className="footer-note">Citizen reports are AI-assisted, privacy-aware, and subject to human validation.</span>
+      </footer>
     </main>
   );
 }
